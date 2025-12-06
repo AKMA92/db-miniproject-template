@@ -1,9 +1,7 @@
 # [Project Name]
 
-- [Name 1]
-- [Name 2]
-- [Name 3]
-
+- Maryam Özdemir
+  
 ## Projektidee
 
 - kurze Beschreibung was das Konzept eurer App ist (3-5 Sätze)
