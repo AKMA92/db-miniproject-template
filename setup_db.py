@@ -60,7 +60,8 @@ def main():
             user=config["username"],
             password=config["password"]
         )
-        conn.autocommit = True # Enable autocommit to allow DROP/CREATE operations
+        conn.autocommit =\
+            True # Enable autocommit to allow DROP/CREATE operations
     except Exception as e:
         print(f"❌ Failed to connect to database: {e}")
         sys.exit(1)
