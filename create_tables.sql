@@ -31,7 +31,7 @@ CREATE TABLE PRODUCT (
     name          VARCHAR(100) NOT NULL,
     category      VARCHAR(100) NOT NULL,
     product_type  VARCHAR(100) NULL,
-    CONSTRAINT chk_product_category CHECK (category IN ('food','hygiene'))
+    CONSTRAINT chk_product_category CHECK (category IN ('food','hygiene', 'garden', 'electronics', 'other'))
 );
 
 CREATE TABLE EMPLOYED (

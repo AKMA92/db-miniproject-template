@@ -335,7 +335,7 @@ def delete_product(product_id: int):
 def page_overview():
     st.subheader("Übersicht")
     st.write("""
-        Mein ER-Diagramm zeigt die Entität Company, die in einer 1-n-Beziehung zu Employee steht, realisiert über die Zwischentabelle Employed, wobei jeder Mitarbeiter genau einer Firma zugeordnet ist.
+        Mein ER-Diagramm zeigt die Entität Company, die in einer 1-m-Beziehung zu Employee steht, realisiert über die Zwischentabelle Employed, wobei jeder Mitarbeiter genau einer Firma zugeordnet ist.
         Zwischen Company und Product besteht eine n-m-Beziehung, die über die Tabelle Deliver abgebildet wird, da eine Firma mehrere Produkte liefern kann und ein Produkt von mehreren Firmen geliefert werden kann.
     """)
 
@@ -380,9 +380,6 @@ def page_companies():
             st.success("Firma erfolgreich hinzugefügt.")
             st.rerun()
 
-    # -------------------------
-    # Firma aktualisieren
-    # -------------------------
     st.markdown("#### Firma aktualisieren")
 
     companies = select_companies()
@@ -424,9 +421,6 @@ def page_companies():
                 except Exception as e:
                     st.error(f"Update fehlgeschlagen: {e}")
 
-    # -------------------------
-    # Firma löschen
-    # -------------------------
     st.markdown("#### Firma löschen")
 
     companies = select_companies()
@@ -454,7 +448,7 @@ def page_companies():
     st.warning(
         f"Beim Löschen wird **die Firma** entfernt und zusätzlich:\n"
         f"- **{employed_count}** Mitarbeiter (inkl. Zuordnung)\n"
-        f"- **{delivered_count}** Lieferbeziehungen (DELIVER)\n\n"
+        f"- **{delivered_count}** Lieferbeziehungen (Delivered)\n\n"
         f"Dieser Vorgang ist nicht rückgängig zu machen."
     )
 
@@ -508,9 +502,6 @@ def page_employees():
             st.success("Mitarbeiter erfolgreich hinzugefügt.")
             st.rerun()
 
-    # -------------------------
-    # Mitarbeiter aktualisieren
-    # -------------------------
     st.markdown("#### Mitarbeiter aktualisieren")
 
     employees = select_employees()
@@ -555,9 +546,6 @@ def page_employees():
                 except Exception as e:
                     st.error(f"Update fehlgeschlagen: {e}")
 
-    # -------------------------
-    # Mitarbeiter löschen
-    # -------------------------
     st.markdown("#### Mitarbeiter löschen")
 
     employees = select_employees()
@@ -622,8 +610,8 @@ def page_products():
         product_id = st.number_input("Produkt-ID", min_value=1, step=1)
         company_id = st.number_input("Firma-ID (Lieferant)", min_value=1, step=1)
         name = st.text_input("Produktname")
-        category = st.text_input("Kategorie")
-        product_type = st.selectbox("Produkttyp", ("Hygiene", "Food"))
+        category = st.selectbox("Kategorie", ("food", "hygiene", "garden", "electronics", "other"))
+        product_type = st.text_input("Produkttyp")
 
         submitted = st.form_submit_button("Produkt speichern")
         if submitted:
@@ -631,9 +619,6 @@ def page_products():
             st.success("Produkt erfolgreich hinzugefügt.")
             st.rerun()
 
-    # -------------------------
-    # Produkt aktualisieren
-    # -------------------------
     st.markdown("#### Produkt aktualisieren")
 
     products = select_products()
@@ -652,16 +637,18 @@ def page_products():
         row = products[products["display"] == selected_display_upd].iloc[0]
         pid = int(row["product_id"])
 
-        options_product_type = ("Hygiene", "Food")
-        current_type = str(row["product_type"]).strip()
-        if current_type not in options_product_type:
-            current_type = "Hygiene"
-        current_type_index = options_product_type.index(current_type)
+        category_options = ("food", "hygiene")
+        current_category = str(row["category"]).strip().lower()
+        if current_category not in category_options:
+            current_category = "food"
+        current_category_index = category_options.index(current_category)
+
+        current_product_type = "" if row["product_type"] is None else str(row["product_type"])
 
         with st.form("form_update_product"):
             upd_name = st.text_input("Produktname", value=str(row["name"]))
-            upd_category = st.text_input("Kategorie", value=str(row["category"]))
-            upd_product_type = st.selectbox("Produkttyp", options_product_type, index=current_type_index)
+            upd_category = st.selectbox("Kategorie", category_options, index=current_category_index)
+            upd_product_type = st.text_input("Produkttyp", value=current_product_type)
 
             submitted_upd = st.form_submit_button("Produkt aktualisieren")
 
@@ -673,9 +660,6 @@ def page_products():
                 except Exception as e:
                     st.error(f"Update fehlgeschlagen: {e}")
 
-    # -------------------------
-    # Produkt löschen
-    # -------------------------
     st.markdown("#### Produkt löschen")
 
     products = select_products()
@@ -701,7 +685,7 @@ def page_products():
 
     st.warning(
         f"Beim Löschen wird das Produkt **endgültig** entfernt und zusätzlich:\n"
-        f"- **{delivered_count}** Lieferbeziehungen (DELIVER)\n\n"
+        f"- **{delivered_count}** Lieferbeziehungen (Delivered)\n\n"
         f"Dieser Vorgang ist nicht rückgängig zu machen."
     )
 
@@ -760,7 +744,7 @@ def page_ddls():
         name          VARCHAR(100) NOT NULL,
         category      VARCHAR(100) NOT NULL,
         product_type  VARCHAR(100) NULL,
-        CONSTRAINT chk_product_category CHECK (category IN ('food','hygiene'))
+        CONSTRAINT chk_product_category CHECK (category IN ('food','hygiene', 'garden', 'electronics', 'other'))
     );
 
     CREATE TABLE EMPLOYED (
@@ -775,7 +759,6 @@ def page_ddls():
     );
     """
 
-    # Anzeige des DDL-Codes in einem formatierten Block
     st.code(ddl_code, language="sql")
 
 def main():
