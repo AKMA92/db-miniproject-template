@@ -1,4 +1,5 @@
 # Mini Project Migros
+<img width="746" height="594" alt="image" src="https://github.com/user-attachments/assets/8ec95e76-ee10-469d-8ea5-b1ac4a25d2a3" />
 
 - Maryam Özdemir
   
@@ -9,6 +10,7 @@ Die Daten werden über klar definierte Tabellen und Beziehungen (EMPLOYED für A
 Damit wird die Datenkonsistenz durch Primärschlüssel, Fremdschlüssel und Constraints sichergestellt, während die Benutzeroberfläche die wichtigsten Funktionen übersichtlich in Tabs bereitstellt.
 
 ## ER Modell
+![ER-Design Mini Projekt](er-design-mini-project.png "ER-Design Mini Projekt Migros")
 
 ## Entitätstypen
 
@@ -31,8 +33,6 @@ Damit wird die Datenkonsistenz durch Primärschlüssel, Fremdschlüssel und Cons
   *(eine Firma → viele Produkte; ein Produkt → viele Firmen)*
 - **Relationale Umsetzung:**  
   Zwischentabelle **DELIVERED** *(zusammengesetzter Primärschlüssel aus product_id und company_id)*
-
-![ER-Design Mini Projekt](er-design-mini-project.png "ER-Design Mini Projekt Migros")
 
 ## Beschreibung der Streamlit-App
 
