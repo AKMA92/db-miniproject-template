@@ -1,7 +1,5 @@
-# Mini Project Migros
+# Mini Project Migros- Maryam Özdemir
 <img width="746" height="594" alt="image" src="https://github.com/user-attachments/assets/8ec95e76-ee10-469d-8ea5-b1ac4a25d2a3" />
-
-- Maryam Özdemir
   
 ## Projektidee
 
@@ -59,5 +57,17 @@ Beim Löschen werden je nach Bereich zusätzlich abhängige Einträge entfernt (
 2. `python setup_db.py`
 3. `streamlit run streamlit_app.py`
 
+## Bilder
+**Alle DDls**
+<img width="786" height="738" alt="image" src="https://github.com/user-attachments/assets/91ff014f-705f-4965-a8c3-565e0d4ba510" />
+
+**Hizufügen**
+<img width="742" height="700" alt="image" src="https://github.com/user-attachments/assets/08bf7200-9b16-4524-a5d5-23cd9486406a" />
+
+**Aktualisieren**
+<img width="752" height="708" alt="image" src="https://github.com/user-attachments/assets/aea8709f-99f5-4ac2-abf6-1028c821d25f" />
+
+**Löschen**
+<img width="762" height="440" alt="image" src="https://github.com/user-attachments/assets/120d4fdd-e620-48e7-a2cb-77f65974b84a" />
 
 
