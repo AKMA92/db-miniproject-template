@@ -1,6 +1,6 @@
 # Mini Project Migros- Maryam Özdemir
-<img width="746" height="594" alt="image" src="https://github.com/user-attachments/assets/8ec95e76-ee10-469d-8ea5-b1ac4a25d2a3" />
-  
+<img width="748" height="528" alt="image" src="https://github.com/user-attachments/assets/6f4e0770-d0cc-4994-8f35-e7d4efafa53c" />
+
 ## Projektidee
 
 - Meine Streamlit-App ermöglicht die Verwaltung von Firmen, Mitarbeitenden und Produkten in einer PostgreSQL-Datenbank.
